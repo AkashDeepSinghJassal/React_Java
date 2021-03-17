@@ -17,7 +17,7 @@ class NavbarHead extends Component{
             <Navbar.Brand href="#home">Quikr</Navbar.Brand>
             <Nav className="mr-auto">
                    
-                    <NavbarDropdown useArray={this.state.electronic} name="Electronics"></NavbarDropdown>
+                    <NavbarDropdown  useArray={this.state.electronic} name="Electronics"></NavbarDropdown>
                     <NavbarDropdown useArray={this.state.furniture}name="Furniture"></NavbarDropdown>
                     <NavbarDropdown useArray={this.state.homeApp}name="Home Appliances"></NavbarDropdown>
             </Nav>
