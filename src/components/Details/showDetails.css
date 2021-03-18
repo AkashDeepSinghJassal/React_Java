@@ -1,0 +1,16 @@
+.show{
+    margin-top:40px;
+    margin:30px;
+    
+}
+.show>*{
+    margin-top: 20px;
+}
+.detailsBtn{
+    padding: 20px ;
+}
+.show button{
+    padding-left:45px;
+    padding-right:45px;
+    margin: 20px;
+}
