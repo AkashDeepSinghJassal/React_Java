@@ -3,6 +3,7 @@ import Image from "./image"
 import "./details.css"
 import data from "../../data.json"
 import ShowDetails from "./showDetails"
+import Footer from './footer'
 class Details extends React.Component{
     state={data:data}
     render(){
@@ -14,6 +15,8 @@ class Details extends React.Component{
                     <ShowDetails details={this.state.data}></ShowDetails>
 
                 </div>
+                {/* <SimilarProd></SimilarProd> */}
+                <Footer></Footer>
                 
             </div>
         );

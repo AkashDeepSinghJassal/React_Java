@@ -19,3 +19,13 @@
     height:100px;
     width: 100px;
 }
+.scrollImage{
+    max-height: 120px;
+    display: flex;
+    overflow-x: auto;
+}
+.scrollImage .item{
+    min-width:110px;
+    height:110px;
+    line-height: 110px;
+}
