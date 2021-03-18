@@ -10,7 +10,6 @@ class App extends React.Component {
     return (
       <div>
         <NavbarHead></NavbarHead>
-        
         <Details></Details>   
       </div>
   )
