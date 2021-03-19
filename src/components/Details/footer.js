@@ -21,8 +21,8 @@ class Footer extends React.Component{
                 </div>
             </div>
             <div className="rightFooter">
-                {this.state.StateArray.map((city)=>{
-                    return <a href={`#${city}`}>{city}</a> 
+                {this.state.StateArray.map((city, index)=>{
+                    return <a key = {index} href={`#${city}`}>{city}</a> 
                 })}
             </div>
             
