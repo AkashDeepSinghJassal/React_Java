@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "./image"
 import "./details.css"
-import data from "../../data.json"
+import data from "../../data/data.json"
 import ShowDetails from "./showDetails"
 import Footer from './footer'
 class Details extends React.Component{

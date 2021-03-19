@@ -4,10 +4,10 @@
     margin-left: 60px;
 }
 .leftFooter{
-    border-right: 2px solid lightgrey;
+    border-right: 1px solid rgba(211, 211, 211, 0.767);
     min-width:55%;
     max-width: 55%;
-    
+    padding-right : 50px;
 
 }
 p{
@@ -19,14 +19,40 @@ p{
     margin-top:30px
 }
 .rightFooter{
-    margin:10px;
+    margin:10px 50px;
     display:flex;
     flex-wrap: wrap;
-    background-color: lightyellow;
 }
-.rightFooter>*{
-    margin-left:30px;
-    margin-right:20px;
-    margin-top:10px;
-    color:black
+.rightFooter a{
+    width: 33%;
+    color:black;
+    text-decoration: none;
+}
+.link-flex{
+    display: flex;
+
+}
+.follow-label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 50px;
+}
+.icon > *{
+    width: 30px;
+    height : 30px;
+    text-align: center;
+    border-radius: 100px;
+    margin : 0 10px;
+}
+.facebook{
+    color : #4267B2;
+}
+.google{
+    color : rgb(0, 202, 0);
+}
+.linkedin{
+    color : #0072b1;
+}
+.twitter{
+    color : rgb(0, 174, 255);
 }
