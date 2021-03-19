@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './pages/App';
+import App from './pages/Detail/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './pages/Search'
@@ -25,5 +25,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
 reportWebVitals();

@@ -39,6 +39,7 @@
     color : rgb(102, 102, 102);
     height: 20px;
     overflow: hidden;
+    margin-bottom: 8px;
 }
 .other-details-wrapper{
     display : grid;
