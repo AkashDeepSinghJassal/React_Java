@@ -28,7 +28,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://192.168.80.45:3000",
+  "proxy": "https://peaceful-springs-01295.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",

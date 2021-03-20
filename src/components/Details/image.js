@@ -20,10 +20,21 @@ class Image extends React.Component {
     changeImage = (imageDate) => {
         this.setState({ mainImage: imageDate.target.src })
     }
-    render() {
-        console.log(this.state.mainImage);
-        return (
-
+    render(){
+        return(
+                 
+            
+                <div className="container-outside">
+                         <div><img src={this.state.mainImage}className="container-inside"/></div>
+                            <div className="scrollImage">
+                                {
+                                     this.state.arr.map((data,index)=>{
+                                        return <img className="item" src={data} onClick={(data) => this.changeImage(data)}/>
+                                    })
+                                }
+                            </div>
+                            
+                         
 
             <div className="container-outside">
                 <div><img src={this.state.mainImage} className="container-inside" /></div>
