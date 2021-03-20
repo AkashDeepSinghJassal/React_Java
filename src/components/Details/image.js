@@ -30,7 +30,7 @@ class Image extends React.Component{
                             <div className="scrollImage">
                                 {
                                      this.state.arr.map((data,index)=>{
-                                        return <img className="item" src={data} index={index} onClick={(data) => this.changeImage(data)}/>
+                                        return <img className="item" src={data} onClick={(data) => this.changeImage(data)}/>
                                     })
                                 }
                             </div>
