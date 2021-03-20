@@ -30,6 +30,7 @@ export default class index extends Component {
                             ProductData.map((product, index) => {
                                 return <Card
                                     key={index}
+                                    prodId = {product.id}
                                     prodName={product.name}
                                     prodPrice={product.price}
                                     imgSrc={product.image}

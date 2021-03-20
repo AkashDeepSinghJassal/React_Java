@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button'
+import { Redirect } from 'react-router-dom'
 import './style.css'
 //props - img, price, name
 export default class index extends Component {
+    state = {
+        clicked : false
+    }
+    handleClick = () => {
+        console.log("clicked");
+        this.setState({clicked : true})
+    }
     render() {
         return (
             <div>
-                <div className="card">
+                {this.state.clicked && 
+                    <Redirect to={`/${this.props.prodId}`} />
+                }
+                <div className="card" onClick = {this.handleClick}>
                     <div className="image-wrapper">
                         <div className="image-responser">
                             <img src={this.props.imgSrc} alt={this.props.prodName} />
