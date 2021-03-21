@@ -15,7 +15,7 @@ export default class index extends Component {
         return (
             <div>
                 {this.state.clicked && 
-                    <Redirect to={`/${this.props.prodId}`} />
+                    <Redirect push to={`/${this.props.prodId}`} />
                 }
                 <div className="card" onClick = {this.handleClick}>
                     <div className="image-wrapper">
