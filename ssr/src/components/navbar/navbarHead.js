@@ -6,9 +6,9 @@ class NavbarHead extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      electronic: ["Mobile", "Laptop", "Air conditioner", "headphones"],
-      furniture: ["Mobile", "Laptop", "Air conditioner", "headphones"],
-      homeApp: ["Mobile", "Laptop", "Air conditioner", "headphones"]
+      electronic: ["Mobile", "Laptop", "Tablets", "headphones"],
+      furniture: ["Sofa", "Bed", "Tables", "Chairs","Storage"],
+      homeApp: ["Air Conditioner", "Refridgarator", "Vacuum cleaner", "Geysers"]
     };
   }
   render() {

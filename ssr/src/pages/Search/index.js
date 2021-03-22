@@ -5,9 +5,26 @@ import Footer from '../../components/Details/footer'
 import Navbar from '../../components/navbar/navbarHead'
 import ProductData from '../../data/products.json'
 import './style.css'
-export default class index extends Component {
-    render() {
-        console.log(ProductData);
+import { useQuery, gql} from "@apollo/client";
+const get_data=gql`
+    query getSearch{
+        infoSearch{
+            id 
+            price
+            title
+            location
+            verified 
+            imageurl
+        }
+    }
+`;
+//import util from '../../test'
+function Index(props){
+    const {loading,error,data}=useQuery(get_data);
+    // if(loading)console.log("loading");
+    // if(error)console.log(error.message);
+    //if(!loading)console.log(data.infoSearch.imageurl);
+        if(!loading)
         return (
             <div>
                 <Navbar></Navbar>
@@ -27,12 +44,14 @@ export default class index extends Component {
 
                     <div className="product-grid">
                         {
-                            ProductData.map((product, index) => {
+                            // console.log(data);
+                          data.infoSearch.map((product,index) => {
                                 return <Card
                                     key={index}
-                                    prodName={product.name}
+                                    prodName={product.title}
                                     prodPrice={product.price}
-                                    imgSrc={product.image}
+                                    imgSrc={product.imageurl}
+                                    prodId={product.id}
                                 />
                             })
                         }
@@ -41,5 +60,7 @@ export default class index extends Component {
                 <Footer></Footer>
             </div>
         )
-    }
+        else return null;
+ 
 }
+export default Index;

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './pages/Detail/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import Search from './pages/Search'
 import {
   BrowserRouter as Router,
@@ -10,8 +12,14 @@ import {
   Route,
   Link
 } from "react-router-dom";
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  cache: new InMemoryCache(),
+});
+
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
+    <React.StrictMode>
     <Router>
       <Switch>
         <Route exact path="/">
@@ -22,7 +30,9 @@ ReactDOM.render(
         </Route>
       </Switch>
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </ApolloProvider>
+  ,
   document.getElementById('root')
 );
 reportWebVitals();

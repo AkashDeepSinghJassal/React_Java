@@ -1,7 +1,7 @@
 .container-outside{
     width: 420px;
     padding: 0px;
-    border: 5px solid gray;
+    border: 3px solid rgba(128, 128, 128, 0.377);
     margin: 30px;
     height:500px
 }
@@ -31,4 +31,7 @@
 }
 .item{
     margin:10px
+}
+.scrollImage img:hover{
+    box-shadow: 0 4px 8px 0 rgba(72, 183, 235, 0.7), 0 6px 20px 0 rgba(95, 92, 92, 0.6);
 }

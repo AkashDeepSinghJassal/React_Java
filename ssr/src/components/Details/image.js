@@ -24,15 +24,7 @@ class Image extends React.Component {
         return(
                  
             
-                <div className="container-outside">
-                         <div><img src={this.state.mainImage}className="container-inside"/></div>
-                            <div className="scrollImage">
-                                {
-                                     this.state.arr.map((data,index)=>{
-                                        return <img className="item" src={data} onClick={(data) => this.changeImage(data)}/>
-                                    })
-                                }
-                            </div>
+                
                             
                          
 

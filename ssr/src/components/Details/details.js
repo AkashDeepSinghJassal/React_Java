@@ -4,10 +4,18 @@ import "./details.css"
 import data from "../../data/data.json"
 import ShowDetails from "./showDetails"
 import Footer from './footer'
+import axios from 'axios'
+import SimilarProd from './similar'
 class Details extends React.Component{
     state={data:data}
+    // componentDidMount=()=>{
+    //     const  id=342543696;
+    //      console.log(id);
+    //     const res =axios.get(`https://productbackendapi.herokuapp.com/products/getId?id=342543696`);
+    //      console.log(res);
+    // }
     render(){
-        //console.log(this.state.data.image_count);
+       
         return(
             <div>
                 <div className="detailsTop"> 
@@ -15,7 +23,7 @@ class Details extends React.Component{
                     <ShowDetails details={this.state.data}></ShowDetails>
 
                 </div>
-                {/* <SimilarProd></SimilarProd> */}
+                 <SimilarProd card={this.props.similar.infoSearch}></SimilarProd> 
                 <Footer></Footer>
                 
             </div>

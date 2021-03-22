@@ -3,7 +3,9 @@ import Button from 'react-bootstrap/Button'
 import './style.css'
 //props - img, price, name
 export default class index extends Component {
+
     render() {
+        
         return (
             <div>
                 <div className="card">
