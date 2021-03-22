@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Card from '../../components/Card'
 import Footer from '../../components/Details/footer'
 import Navbar from '../../components/navbar/navbarHead'
-import ProductData from '../../data/products.json'
 import './style.css'
 import { useQuery, gql} from "@apollo/client";
 const get_data=gql`
