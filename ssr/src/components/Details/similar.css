@@ -1,0 +1,15 @@
+.crd{
+    display: flex;
+    overflow-x: auto;
+}
+ .crd .item{
+    min-width:210px;
+    max-width:210px;
+    height:210px;
+    line-height: 210px;
+    margin-right:20px
+} 
+.container{
+    margin-top:50px;
+    margin-bottom: 100px;
+}

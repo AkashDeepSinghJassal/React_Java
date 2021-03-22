@@ -12,6 +12,7 @@ export default class index extends Component {
         this.setState({clicked : true})
     }
     render() {
+        
         return (
             <div>
                 {this.state.clicked && 

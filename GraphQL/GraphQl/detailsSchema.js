@@ -2,46 +2,65 @@ const fetch = require('node-fetch');
 const axios = require('axios');
 const typeDefs = `
 type Query{
-    info: product
-    ravi: String
-}
-type product {
+    infoDetails(id:ID!): details
+    infoSearch:[search]
     
-}`;
+}
+type search{
+    id:Int
+    price:Int
+    title:String
+    location:String
+    verified:Boolean
+    imageurl:String
+
+}
+type details{
+    id:ID
+    title: String
+    cityname:String
+    statename:String
+    imagecount:Int
+    imagedetails:String
+    price:Int
+    condition:String
+}
+`;
 const resolvers = {
     Query: {
-        info: async () =>{
+        // infoDetails: async (props) =>{
+        //     const { id } = props;
+        //     let res = await axios.get(`https://productbackendapi.herokuapp.com/products/getId?id=${id}`);
+        //     //console.log(res.data);
+        //     return {
+
+        //         id: res.data.productid,
+        //         title:res.data.title,
+        //         cityname:res.data.cityname,
+        //         statename:res.data.statename,
+        //         imagecount:res.data.imagecount,
+        //         imagedetails:res.data.imagedetails,
+        //         price:res.data.attributereservedprice,
+        //         condition:res.data.attributeproductcondition 
+        //     }
+
+        // },
+        infoSearch:async()=>{
             let res = await axios.get("https://peaceful-springs-01295.herokuapp.com/products");
-            console.log(res.data[0]);
-            return {
-                title: res.data[0].title
-            }
+            // return {
+            //     id: res.data.id,
+            //     title:res.data.title,
+                
+            // }
+            return res.data;
 
         }
-        // ,
-        // 
-        // return "hello";
-        // }
+      
     }
+        
+
 }
-// const resolvers={
-//     Query:{
-//         info:async(parent,args)=>{
-//             const res=await fetch("https://peaceful-springs-01295.herokuapp.com/products")
-//             .then(response => response.json())
-//             .then(response => {
-//                 console.log(response)
-//                 return {
-//                     id:123,
-//                     price: 123
-//                 }
-//             })
-//             .catch(error => {
-//                 console.log(error)
-//             })
-//         }
-//     }
-// }
+
 module.exports={
     typeDefs,
     resolvers
