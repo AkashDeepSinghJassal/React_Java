@@ -1,5 +1,5 @@
 import React from 'react';
-import './image.css'
+import './image.css';
 class Image extends React.Component {
     constructor(props) {
         super(props);
@@ -20,28 +20,18 @@ class Image extends React.Component {
     changeImage = (imageDate) => {
         this.setState({ mainImage: imageDate.target.src })
     }
-    render(){
-        return(
-                 
-            
-                
-                            
-                         
-
+    render() {
+        return (
             <div className="container-outside">
                 <div><img src={this.state.mainImage} className="container-inside" /></div>
                 <div className="scrollImage">
                     {
                         this.state.arr.map((data, index) => {
-                            return <img key = {index} className="item" src={data} index={index} onClick={(data) => this.changeImage(data)} />
+                            return <img key={index} className="item" src={data} index={index} onClick={(data) => this.changeImage(data)} />
                         })
                     }
                 </div>
-
-
-
             </div>
-
         )
     }
 }

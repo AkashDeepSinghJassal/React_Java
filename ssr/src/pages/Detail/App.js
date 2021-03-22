@@ -1,5 +1,5 @@
-import './App.css';
 import React from 'react';
+import Details from '../../components/Details/details';
 import NavbarHead from '../../components/navbar/navbarHead';
 import Details from'../../components/Details/details'
 import { useQuery, gql} from "@apollo/client";
@@ -16,6 +16,7 @@ const get_data=gql`
     }
 `;
 //import { useQuery, gql} from "@apollo/client";
+import './App.css';
 
 // const getData=gql`
 // query getDetails($id: ID){
