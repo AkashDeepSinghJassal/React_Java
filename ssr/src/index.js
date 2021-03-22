@@ -4,6 +4,7 @@ import App from './pages/Detail/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './pages/Search'
+import ReactCodeGen from './pages/ReactCodeGen'
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +17,9 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/">
           <Search></Search>
+        </Route>
+        <Route exact path = "/rcg">
+          <ReactCodeGen></ReactCodeGen>
         </Route>
         <Route exact path="/:id">
           <App></App>
