@@ -6,12 +6,25 @@ class Image extends React.Component {
         this.state = { arr: [], mainImage: "" }
     }
     componentDidMount = () => {
-        this.props.source.forEach((element) => {
-            let str = "https://teja7.kuikr.com/" + element.substring(0, element.length - 47) + ".jpeg";
-
-            var array = this.state.arr;
-            array.push(str);
-            this.setState({ arr: array });
+        
+        const images = this.props.source
+        const img = images.split(' ')
+        img.forEach((element, index) => {
+            var i = element.replaceAll(`image${index+1}:`, '')
+            var array=this.state.arr;
+            if(i!=""){
+                let str=""
+                if(i.substring(i.length-4,i.length)=="jpeg")
+                {
+                    str="https://teja7.kuikr.com/"+i.substring(0,i.length - 47)+".jpeg";
+                    array.push(str);
+                }
+                else{
+                    str="https://teja7.kuikr.com/"+i.substring(0,i.length - 37)+".png";
+                    array.push(str);
+                }
+                this.setState({arr:array});
+            }
         })
         this.setState({ mainImage: this.state.arr[0] })
 

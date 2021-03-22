@@ -18,12 +18,10 @@ const get_data=gql`
         }
     }
 `;
-//import util from '../../test'
+
 function Index(props){
     const {loading,error,data}=useQuery(get_data);
-    // if(loading)console.log("loading");
-    // if(error)console.log(error.message);
-    //if(!loading)console.log(data.infoSearch.imageurl);
+    
         if(!loading)
         return (
             <div>
@@ -38,7 +36,7 @@ function Index(props){
                 <div className="center-body">
                     <div className="search-result">
                         <p>
-                        Search Results : Total {"4"} results found
+                        Search Results : Total {data.infoSearch.length} results found
                         </p>
                     </div>
 

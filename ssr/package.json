@@ -32,7 +32,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://peaceful-springs-01295.herokuapp.com",
+  "proxy": "https://productbackendapi.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",
