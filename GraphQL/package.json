@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "proxy": "https://peaceful-springs-01295.herokuapp.com",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,6 +15,7 @@
     "express": "^4.17.1",
     "fetch": "^1.1.0",
     "graphql": "^15.5.0",
+    "http-proxy-middleware": "^1.0.6",
     "node-fetch": "^2.6.1"
   }
 }

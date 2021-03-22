@@ -3,22 +3,22 @@
 # dependencies
 /GraphQL/node_modules
 /ssr/node_modules
-/.pnp
+/ssr/.pnp
 .pnp.js
 
 # testing
 /coverage
 
 # production
-/build
+/ssr/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/ssr/.DS_Store
+/ssr/.env.local
+/ssr/.env.development.local
+/ssr/.env.test.local
+/ssr/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/ssr/npm-debug.log*
+/ssr/yarn-debug.log*
+/ssr/yarn-error.log*
