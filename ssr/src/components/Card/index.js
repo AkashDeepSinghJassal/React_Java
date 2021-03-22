@@ -5,7 +5,19 @@ import './style.css'
 //props - img, price, name
 export default class index extends Component {
     state = {
-        clicked : false
+        clicked : false,
+        price:0
+    }
+    componentDidMount=()=>{
+        
+        var x=this.props.prodPrice ;
+        x=x.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers != '')
+            lastThree = ',' + lastThree;
+        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        this.setState({price:res})
     }
     handleClick = () => {
         console.log("clicked");
@@ -26,7 +38,7 @@ export default class index extends Component {
                     </div>
                     <div className="info-wrapper">
                         <p className="prod-price" >
-                            Rs {this.props.prodPrice}
+                            Rs {this.state.price}
                         </p>
                         <p className="prod-name">
                             {this.props.prodName}
