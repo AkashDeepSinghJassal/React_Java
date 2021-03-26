@@ -1,8 +1,8 @@
+import { gql, useQuery } from "@apollo/client";
 import React from 'react';
 import Details from '../../components/Details/details';
 import NavbarHead from '../../components/navbar/navbarHead';
 
-import { useQuery, gql} from "@apollo/client";
 const get_data=gql`
     query getSearch{
         infoSearch{
@@ -15,7 +15,6 @@ const get_data=gql`
         }
     }
 `;
-
 
 // const getData=gql`
 // query getDetails($id: ID){

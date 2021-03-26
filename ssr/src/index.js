@@ -10,8 +10,7 @@ import ReactCodeGen from './pages/ReactCodeGen'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -24,13 +23,13 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/">
-          <Search></Search>
+          {/* <Search></Search> */}
         </Route>
         <Route exact path = "/rcg">
           <ReactCodeGen></ReactCodeGen>
         </Route>
         <Route exact path="/:id">
-          <App></App>
+          {/* <App></App> */}
         </Route>
       </Switch>
     </Router>
