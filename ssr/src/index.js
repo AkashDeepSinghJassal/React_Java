@@ -23,13 +23,13 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/">
-          <Search></Search>
+          {/* <Search></Search> */}
         </Route>
         <Route exact path = "/rcg">
           <ReactCodeGen></ReactCodeGen>
         </Route>
         <Route exact path="/:id">
-          <App></App>
+          {/* <App></App> */}
         </Route>
       </Switch>
     </Router>

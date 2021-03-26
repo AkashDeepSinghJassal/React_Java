@@ -4,14 +4,15 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.12",
+    "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.0",
-    "graphql": "^15.5.0",
     "formik": "^2.2.6",
+    "graphql": "^15.5.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.1",
@@ -32,7 +33,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://peaceful-springs-01295.herokuapp.com",
+  "proxy": "https://productbackendapi.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",

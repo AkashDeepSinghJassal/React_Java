@@ -3,7 +3,6 @@ import Card from '../Card/index'
 import './similar.css'
 class SimilarProd extends React.Component{
     render(){
-        console.log(this.props.card)
         return(
             <div className="container">
                 <h3>Similar Products</h3>

@@ -1,17 +1,70 @@
-import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
-import * as Yup from 'yup';
+import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
 import React, { Component } from 'react';
-import Table from './ReactTable';
+import * as Yup from 'yup';
+import ReactTable from './ReactTable';
 export default class TableGen extends Component {
     state = {
         isSubmitted: false,
-        arr: []
+        arr: [],
+        rows: []
+    }
+
+    onChangeRows = (rows) => {
+        console.log("yes");
+        this.setState({ rows: rows });
+    }
+    // dynamic validations 
+    // Benefits : 
+    // 1- Add new types
+    // 2 - change or add validations for each type
+    colTypes = {
+        string: {
+            validations: [
+                {
+                    validationType: 'required',
+                    params: ['Required']
+                },
+                {
+                    validationType: 'min',
+                    params: [3, "Minimum length 3"]
+                }
+            ]
+        },
+        number: {
+            validations: [
+                {
+                    validationType: 'required',
+                    params: ['Required']
+                }
+            ]
+        },
+        array: {
+            validations: [
+                {
+                    validationType: 'required',
+                    params: ['Required']
+                },
+                {
+                    validationType: 'min',
+                    params: [1, "Cannot be empty"]
+                }
+            ]
+        },
+        object: {
+            validations: [
+                {
+                    validationType: 'required',
+                    params: ['Required']
+                }
+            ]
+        }
     }
     render() {
-        // console.log(this.state.arr);
+        console.log(this.state);
+
         return (
             <div>
-                <Formik 
+                <Formik
                     initialValues={{
                         columns: [
                             {
@@ -31,7 +84,9 @@ export default class TableGen extends Component {
                                     colName: Yup.string()
                                         .required('Column name is required')
                                         .min(2, "Length must be atleast 2"),
-                                    colType: Yup.string().oneOf(['number', 'string', 'object'])
+                                    colType: Yup.string().oneOf(Object.keys(this.colTypes).map((type) => {
+                                        return type;
+                                    }))
                                         .required("Column type is required")
                                         .min(1, "Required")
                                 })
@@ -39,11 +94,25 @@ export default class TableGen extends Component {
                         })}
                     onSubmit={fields => {
 
-                        // alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
-                        this.setState({ isSubmitted: true, arr: fields.columns })
+                        console.log('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
+                        let newArr = [...(fields.columns)];
+                        newArr.map((data) => {
+                            data["validations"] = this.colTypes[data.colType].validations
+                            // console.log(this.colTypes[data.colType].validations, data.colName);
+                        })
+
+                        // console.log(newArr);
+
+                        this.setState({ isSubmitted: true, arr: newArr, rows: [] })
+                    }
+                    }
+
+                    onReset={() => {
+                        console.log("reset clicked");
+                        this.setState({isSubmitted : false, rows : []});
                     }}
                 >
-                    {({ values, touched }) => {
+                    {({ values, touched, handleReset }) => {
                         // console.log(values);
                         return (
                             <Form>
@@ -66,9 +135,11 @@ export default class TableGen extends Component {
                                                             <div>
                                                                 <label htmlFor={`columns.${index}.colType`}>colType</label>
                                                                 <Field name={`columns.${index}.colType`} as="select" >
-                                                                    <option value="string" label="string"></option>
-                                                                    <option value="number" label="number"></option>
-                                                                    <option value="object" label="object"></option>
+                                                                    {
+                                                                        Object.keys(this.colTypes).map((type, index) => {
+                                                                            return <option key={index} value={type} label={type}></option>
+                                                                        })
+                                                                    }
                                                                 </Field>
                                                                 <ErrorMessage name={`columns.${index}.colType`} render={msg => <div style={{ color: 'red' }} >{msg}</div>} />
                                                             </div>
@@ -77,7 +148,8 @@ export default class TableGen extends Component {
                                                     );
                                                 })}
                                                 <div>
-                                                    <button type="submit">Submit</button>
+                                                    <button type="submit" >Submit</button>
+                                                    <button type="reset">Reset</button>
                                                     <button typpe="button" onClick={() => {
                                                         arrayHelper.push({
                                                             colName: '',
@@ -95,11 +167,15 @@ export default class TableGen extends Component {
                     }
                     }
                 </Formik >
-                {this.state.isSubmitted &&
-                    <Table
+                {
+                    this.state.isSubmitted &&
+                    <ReactTable
                         columns={this.state.arr}
+                        rows={this.state.rows}
+                        onChangeRows={this.onChangeRows}
+
                     >
-                    </Table>
+                    </ReactTable>
                 }
             </div >
         )

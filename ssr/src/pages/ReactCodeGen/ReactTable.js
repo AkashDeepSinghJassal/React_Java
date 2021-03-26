@@ -1,107 +1,120 @@
-import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
 import * as Yup from 'yup';
 export default class ReactTable extends Component {
-    state = {
-        rows: [[1, 2], [3, 4]]
-    }
+    // state = {
+    //     rows: []
+    // }
     yupSchema = (schema, data) => {
-        const { colName, colType } = data;
+        const { colName, colType, validations } = data;
+        if (!Yup[colType]) {
+            return schema;
+        }
         let validator = Yup[colType](); // Yup.string()
-        validator = validator.required('Required'); // Yup.string().required('Required')
+        validations.forEach((validation) => {
+            const { validationType, params } = validation;
+            // validator = validator.required('Required'); // Yup.string().required('Required')
+            if (!validator[validationType]) {
+                return;
+            }
+            validator = validator[validationType](...params);
+        });
         schema[colName] = validator; //{ colName : validator }
         return schema;
     }
     render() {
         console.log(this.props);
-        let columns = this.props.columns;
-        let rows = this.state.rows;
+        const { rows, columns, onChangeRows } = this.props;
         const yupSchema = columns.reduce(this.yupSchema, {});
         // console.log(this.yupSchema);
         const validationSchema = Yup.object().shape(yupSchema)
-        const initialVal = {}
+        let initialVal = {}
         columns.map((col) => {
             // console.log(initialVal);
             initialVal[col.colName] = ''
         });
-        console.log(initialVal);
+        // console.log(initialVal);
         return (
             <div>
-                <Formik
-                                initialValues={
-                                    initialVal
-                                }
-                                validationSchema={
-                                    validationSchema
-                                }
-                            >
-                                {({ values }) => {
-                                    return (
-                                            <>
-                                            {
-                                                Object.keys(values).map((key, index) => {
-                                                    return (
-                                                        <td>
-                                                            <Field name={key} type="text" placeholder= {key} />
-
-
-                                                            <ErrorMessage render={msg => <div style={{ color: 'red' }} >{msg}</div>} name={key} type="text" />
-
-                                                        </td>
-                                                    );
-                                                })
-                                            }
-                                            </>
-                                    );
-                                }}
-                            </Formik>
-                <Table
-                    striped
-                    hover
-                    bordered
+                <Formik enableReinitialize
+                    initialValues={
+                        initialVal
+                    }
+                    validationSchema={
+                        validationSchema
+                    }
+                    onSubmit={(values) => {
+                        console.log(values);
+                        let row = []
+                        Object.keys(values).map((col, index) => {
+                            row.push(values[col]);
+                        });
+                        let newRows = [...(rows)];
+                        newRows.push(row)
+                        console.log(newRows);
+                        // this.setState({rows : newRows});
+                        console.log(onChangeRows);
+                        onChangeRows(newRows);
+                    }}
                 >
-                    <thead>
-                        <tr>
-                            {
-                                columns.map((col, index) => {
-                                    return <th key={index} > {col.colName} </th>
-                                })
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {/* {
-                                columns.map((col, index) => {
-                                    return (
-                                        <td key={index} >
-                                            <input type="text" />
-                                        </td>
-                                    );
-                                })
-                            } */}
-                            
-                        </tr>
-                        {
-                            rows.map((row, rowIndex) => {
-                                return (
-                                    <tr key={rowIndex}>
+                    {({ values }) => {
+                        // console.log(values);
+                        return <Form>
+                            <Table
+                                striped
+                                hover
+                                bordered
+                            >
+                                <thead>
+                                    <tr>
                                         {
-                                            row.map((col, colIndex) => {
+                                            Object.keys(values).map((col, index) => {
+                                                return <th key={index} > {col} </th>
+                                            })
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {
+                                            Object.keys(values).map((key, index) => {
                                                 return (
-                                                    <td key={colIndex}>
-                                                        demo
+                                                    <td key={index}>
+                                                        <Field key={index} name={key} type="text" placeholder={key} />
+                                                        <ErrorMessage render={msg => <div style={{ color: 'red' }} >{msg}</div>} name={key} type="text" />
                                                     </td>
                                                 );
                                             })
                                         }
+                                        <td>
+                                            <button type="submit">submit</button>
+                                        </td>
                                     </tr>
-                                );
-                            })
-                        }
-                    </tbody>
-                </Table>
+                                    {
+                                        rows.map((row, rowIndex) => {
+                                            return (
+                                                <tr key={rowIndex}>
+                                                    {
+                                                        row.map((col, colIndex) => {
+                                                            return (
+                                                                <td key={colIndex}>
+                                                                    {
+                                                                        col
+                                                                    }
+                                                                </td>
+                                                            );
+                                                        })
+                                                    }
+                                                </tr>
+                                            );
+                                        })
+                                    }
+                                </tbody>
+                            </Table>
+                        </Form>
+                    }}
+                </Formik>
             </div>
         )
     }

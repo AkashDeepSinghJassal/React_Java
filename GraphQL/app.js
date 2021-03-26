@@ -1,4 +1,4 @@
- const express = require("express");
+const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./GraphQl/detailsSchema.js");
 const app=express();
